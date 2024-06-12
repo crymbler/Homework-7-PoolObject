@@ -10,10 +10,10 @@ public class CubeSpawner : MonoBehaviour, ISpawnerReceiver
 
     private void FixedUpdate()
     {
-        if (!_objectPool.TryGetObject())
+        if (_objectPool.TryGetObject(out Cube cube) == false)
+        {
             return;
-
-        Cube cube = _objectPool.GetObject();
+        }
 
         cube.Initialize(this);
         cube.transform.position = new Vector3(Random.Range(_minSpawnPositionX, _maxSpawnPositionX),

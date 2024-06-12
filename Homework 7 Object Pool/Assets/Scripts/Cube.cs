@@ -19,17 +19,16 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.TryGetComponent<Platform>(out Platform platform))
         {
             ChangeColor();
-
             StartCoroutine(ToStartLifetime(Random.Range(_minLifetime, _maxLifetime)));
         }
     }
 
     private void ChangeColor()
     {
-        if (!_isChanged)
+        if (_isChanged == false)
         {
             GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
 

@@ -359,6 +359,7 @@
 "Assets/Scripts/CubeSpawner.cs"
 "Assets/Scripts/ISpawnerReceiver.cs"
 "Assets/Scripts/ObjectPool.cs"
+"Assets/Scripts/Platform.cs"
 -langversion:9.0
 
 /deterministic
