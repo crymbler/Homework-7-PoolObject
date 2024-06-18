@@ -1,4 +1,4 @@
 public interface ISpawnerReceiver
 {
-    void OnLifetimeEnded(Cube cube);
+    void ReturnToPool(Cube cube);
 }

@@ -1133,6 +1133,7 @@ MonoBehaviour:
   _maxSpawnPositionX: 7
   _minSpawnPositionZ: 7
   _maxSpawnPositionZ: -7
+  _spawnDelay: 1
 --- !u!1 &1796798350
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class Cube : MonoBehaviour
         if (other.gameObject.TryGetComponent<Platform>(out Platform platform))
         {
             ChangeColor();
-            StartCoroutine(ToStartLifetime(Random.Range(_minLifetime, _maxLifetime)));
+            StartCoroutine(Lifetime(Random.Range(_minLifetime, _maxLifetime)));
         }
     }
 
@@ -36,10 +36,10 @@ public class Cube : MonoBehaviour
         }
     }
 
-    private IEnumerator ToStartLifetime(int time)
+    private IEnumerator Lifetime(int time)
     {
         yield return new WaitForSeconds(time);
 
-        _spawnerReceiver?.OnLifetimeEnded(this);
+        _spawnerReceiver?.ReturnToPool(this);
     }
 }
