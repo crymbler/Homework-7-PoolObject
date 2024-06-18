@@ -4,7 +4,6 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private Cube _prefab;
-    [SerializeField] private int _poolCapacity;
 
     private Queue<Cube> _pool;
 
@@ -15,13 +14,10 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _poolCapacity; i++)
-        {
-            Cube instanceObject = Instantiate(_prefab);
+        Cube instanceObject = CreateObject(_prefab);
+        instanceObject.gameObject.SetActive(false);
 
-            instanceObject.gameObject.SetActive(false);
-            _pool.Enqueue(instanceObject);
-        }
+        _pool.Enqueue(instanceObject);
     }
 
     public bool TryGetObject(out Cube cube)
@@ -32,13 +28,13 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            cube = null;
+            cube = CreateObject(_prefab);
         }
 
         return cube != null;
     }
 
-    public Cube GetObject()
+    private Cube GetObject()
     {
         Cube takenObject = _pool.Dequeue();
         takenObject.gameObject.SetActive(true);
@@ -50,5 +46,10 @@ public class ObjectPool : MonoBehaviour
     {
         returnedObject.gameObject.SetActive(false);
         _pool.Enqueue(returnedObject);
+    }
+
+    private Cube CreateObject(Cube prefab)
+    {
+        return Instantiate(prefab);
     }
 }
